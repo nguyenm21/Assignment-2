@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Create New User</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <!--
+        Embedded script functions to route calls back to the server API
+        cannot make further comments in a script section of code. 
+    -->
+    <script>
+        function httpGet(url) {
+            var xmlHttp = new XMLHttpRequest();
+            xmlHttp.open("GET", url, false);
+            xmlHttp.send(null);
+            return xmlHttp.responseText;
+          }
+          function httpDelete(url) {
+            var xmlHttp = new XMLHttpRequest();
+            xmlHttp.open("DELETE", url, false);
+            //console.log(typeof(tweet_id));
+           //console.log(tweet_id);
+            xmlHttp.send(null);
+           // return xmlHttp.responseText;
+          }
+          async function testDelete(tweet_id){
+        await httpDelete("http://localhost:3000/delete/"+ tweet_id); 
+         }
+         function httpPut(url) {
+            var xmlHttp = new XMLHttpRequest();
+            xmlHttp.open("PUT", url, false);
+            //console.log(typeof(tweet_id));
+           //console.log(tweet_id);
+            xmlHttp.send(null);
+           // return xmlHttp.responseText;
+          }
+          async function testPut(username,newname){
+        await httpPut("http://localhost:3000/put/"+ username +"/"+newname); 
+         }
+         async function test(){
+        const data = await httpGet("http://localhost:3000/apiTweet"); 
+    console.log(typeof(data))
+    const text=JSON.stringify(JSON.parse(data), null, 2 )
+    document.getElementById('display').innerText = text
+         }
+         async function testUser(){
+        const data2 = await httpGet("http://localhost:3000/apiUser"); 
+    console.log(typeof(data))
+    const text=JSON.stringify(JSON.parse(data2), null, 2 )
+    document.getElementById('display2').innerText = text
+         }
+         async function testTweet(user_id){
+        const data = await httpGet("http://localhost:3000/TweetbyID/"+user_id); 
+   // console.log(typeof(data))
+    const text=JSON.stringify(JSON.parse(data), null, 2 )
+    document.getElementById('display3').innerText = text
+         }
+        
+        
+    </script>
+</head>
+
+<body>
+<pre id="display"></pre>
+
+    <div class="container">
+    <input type="button" value="click for Tweets" onclick="test()">
+    <pre id="display2"></pre>
+
+    <div class="container">
+    <input type="button" value="click for Users" onclick="testUser()">
+        <hr>
+        <h1>Create New User</h1>
+        <hr>
+        <form id=form1 action="http://localhost:3000/post" method="POST">
+            <div class="form-group">
+                <label for="exampleInputPassword1">Tweet</label>
+                <input class="form-control" name="text">
+            </div>
+
+            <div class="form-group">
+                <label for="exampleInputPassword1">User ID</label>
+                <input class="form-control" name="user_id">
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+        <hr>
+        <h1>Delete Tweets</h1>
+        <hr>
+        <form id= 'form2' >
+            <div class="form-group">
+                <label for="exampleInputPassword1">Tweet ID</label>
+                <input type="text" id='tweet_id' name="tweet_id">
+            </div>
+            <input type="button" value="click to Delete Tweet" onclick="testDelete(document.getElementById('tweet_id').value)">
+        </form>
+        <h1>Edit Username</h1>
+        <form id=form3>
+            <div class="form-group">
+                <label for="exampleInputPassword1">Username To  Edit</label>
+                <input type="text" id='username' name="username">
+            </div>
+
+            <div class="form-group">
+                <label for="exampleInputPassword1">New Username</label>
+                <input type="text" id='newname' name="newname">
+            </div>
+            <input type="button" value="click to Edit Username" onclick="testPut(document.getElementById('username').value,document.getElementById('newname').value )">
+        </form>
+                <hr>
+                <h1>Tweet Details by User</h1>
+                <hr>
+                <form id=form1>
+                    <pre id="display3"></pre>
+                    <div class="container">
+                    <div class="form-group">
+                        <label for="exampleInputPassword1">User ID</label>
+                        <input type="text" id='userid' name="iserid">
+                    </div>
+                    <input type="button" value="click to get tweet details" onclick="testTweet(document.getElementById('userid').value)">
+                </form>
+    </div>
+
+
+
+ </body>
+ 
+</html>

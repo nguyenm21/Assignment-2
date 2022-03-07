@@ -1,0 +1,26 @@
+{
+  "name": "final_tweet_api",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "ajax": "^0.0.4",
+    "app": "^0.1.0",
+    "body-parser": "^1.19.2",
+    "cons": "^0.0.2",
+    "consolidate": "^0.16.0",
+    "cors": "^2.8.5",
+    "express": "^4.17.3",
+    "fs": "^0.0.1-security",
+    "http": "^0.0.1-security",
+    "method-override": "^3.0.0",
+    "path": "^0.12.7",
+    "swig": "^0.14.0"
+  }
+}
