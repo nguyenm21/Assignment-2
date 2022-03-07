@@ -121,3 +121,9 @@ const generateRandomString = (myLength) => {
   };
 //server opens to port 3000 console log to show that server opens.
 app.listen(PORT, () => console.log(`Hello world app listening on port ${PORT}!`));
+
+function test_print(){
+
+    console.log('test code');
+
+}

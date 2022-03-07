@@ -11,6 +11,9 @@
         cannot make further comments in a script section of code. 
     -->
     <script>
+        function test_print(){
+        console.log('test code');
+        }
         function httpGet(url) {
             var xmlHttp = new XMLHttpRequest();
             xmlHttp.open("GET", url, false);
@@ -58,7 +61,7 @@
     document.getElementById('display3').innerText = text
          }
         
-        
+        test_print();
     </script>
 </head>
 
